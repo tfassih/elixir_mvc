@@ -9,7 +9,12 @@ defmodule ElixirMvc2.Router do
       at: "/",
       only: ~w(images js ts)
 
+
   plug :match
+  plug Plug.Parsers,
+    parsers: [:json],
+    pass: ["application/json"],
+    json_decoder: Poison
   plug :dispatch
 
   get "/" do
